@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
 
@@ -8,6 +9,7 @@ public class Game implements Runnable{
     private int width;
     private int height;
     private boolean running = false;
+    private BufferedImage testImage;
 
     private Thread thread;
 
@@ -21,7 +23,8 @@ public class Game implements Runnable{
     }
 
     private void init() {
-        display = new Display("Test", 600, 300);
+        display = new Display(title, width, height);
+        testImage = ImageLoader.loadImage("/textures/Test.png");
     }
 
 
@@ -58,6 +61,8 @@ public class Game implements Runnable{
         }
         g = bs.getDrawGraphics();
         g.clearRect(0, 0, width, height);
+
+        g.drawImage(testImage, 50, 50, null);
 
 
         bs.show();
