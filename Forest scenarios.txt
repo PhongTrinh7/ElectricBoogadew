@@ -1,0 +1,60 @@
+Forest World Scenarios
+ 	1) 				Bandit Attack
+Your party is stopped by a group of masked individuals. You notice they are carrying blood stained swords and daggers. 
+The largest one begins to speak
+“ Hand over X gold if you know what’s good for you. Otherwise we might have some problems” 
+He begins to point his sword in your direction.
+Pay the gold
+“Good choice. With smarts like yours you might get to live a little longer. HEH HEH HEH.” scenario ends
+    2)  Attack the bandits
+“Looks like these chumps got a death wish. Well boys, I guess we’ll just have to oblige them.” Start combat
+    3) Run away
+You try to make a break for it. As you attempt to drive past them, you notice a trip wire placed between a pair of trees.
+ Before you can react however, your cart is flipped over, knocking you and your party to the ground. As you begin go stand up,
+ you see the bandits are rushing toward you swords in hand. Start combat with debuff.
+
+	2)				Wounded knight
+		On the side of the road you notice a knight lying down against a tree. 
+His armour is dented, and what little skin you see is bruised. He notices you approaching begins to speak
+“Greetings kind travelers, my name is Ser Galvin. As you can see, I am in need of assistance. 
+This forest is quite dangerous, filled with some ungodly creatures.
+ I barely managed to escape the clutches of one of these beasts.
+ However, without medical aid I would be in mortal danger. I humbly request the use of any medical potions that you can spare.”
+1) Give him medical potion
+“Thank you. It’s nice to know that not everyone in this world is corrupted by greed. 
+I wish you great favour in battle.” scenario ends
+      2)   Refuse to give him aid
+	“I understand. It’s unreasonable to expect to receive charity from those you have just met.
+ I suppose I’ll just have to find another way out of this situation.” scenario ends
+      3)   Kill Ser Galvin and rob him
+	You reach into your pocket and take out your dagger and stab Ser Galvin in his throat. 
+Searching his body, you find nothing of value, besides Ser Galvins religious necklace, now stained with blood. 
+Get 1 Ser Galvin’s bloodstained necklace.
+	
+	3a)				Mutated Bear fight
+If you saved Ser Galvin….
+	In the forest you hear the sound of battle. 
+As you go to investigate, you see Ser Galvin fighting a bear. 
+However you soon realize that this is no ordinary bear. 
+It is much larger than an average bear, with several abnormal features. 
+Both Ser Galvin and the bear are locked in combat, and are too busy fighting to notice you.
+
+1)Help Ser Galvin
+	You and your party charge in to assist Ser Galvin in the fight with the beast. 
+(Ser Galvin will help or beast starts fight with less Health).
+When you win.. 
+	“It seems I owe you my thanks again. Without your assistance I might not have made it out of that one alive.
+ I refuse to have you leave empty handed this time.” Ser Galvin begins to take off his necklaces 
+“Here, accept this as a token of my appreciation. It is a rosary created in service of my god. 
+It is said to bring good favor to its wearer. Surely there must be some truth to that, as it has led you to my aid.”
+Accept the necklace
+	“I hope we meet again under less dire circumstances” Get 1 Ser Galvin’s necklace
+	      2) Refuse the necklace
+	“You truly are a saint! I will pray to give you good fortune on your journey.”
+
+3b)					Mutated Bear fight
+If you did not save Ser Galvin….
+	You begin to hear some rumblings in the forest, as well as some monstrous growls.
+ All of the sudden a bear comes out and attacks you and your party. 
+However you soon realize that this is no ordinary bear. It is much larger than an average bear,
+ with several abnormal features. You draw your weapons and prepare for combat.
