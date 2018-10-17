@@ -30,9 +30,10 @@ public class Game implements Runnable{
     //Initializes all of our game components.
     private void init() {
         display = new Display(title, width, height); //Initializes the display.
+        display.getJFrame().addKeyListener(new KeyManager());
         Assets.init(); //Initializes our assets. (Textures and images.
 
-        gameState = new GameState();
+        gameState = new GameState(this);
         State.setState(gameState);
     }
 

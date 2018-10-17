@@ -3,6 +3,11 @@ import java.awt.*;
 public abstract class State {
 
     private static State currentState = null;
+    protected Game game;
+
+    public State(Game game) {
+        this.game = game;
+    }
 
     public static void setState(State state) {
         currentState = state;
