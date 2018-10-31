@@ -19,24 +19,47 @@ public class Game implements Runnable{
     private BufferStrategy bs;
 
     //States
-    private State gameState;
+    public State gameState; //Changed to public
+    public State menuState //NEW
+        
+    //Input
+    private KeyManager keyManger; //NEW
+    private MouseManager mouseMager; //NEW
 
     public Game(String t, int w, int h) {
         title = t;
         width = w;
         height = h;
+        keyManger = new KeyManager(); //NEW
+        mouseManager = new MouseManager(); //NEW
+        
     }
 
     //Initializes all of our game components.
     private void init() {
         display = new Display(title, width, height); //Initializes the display.
         display.getJFrame().addKeyListener(new KeyManager());
+        
+        display.getFrame().addMouseListener(mouseManager); //NEW
+        display.getFrame().addMouseMotionListener(mouseManager); //NEW
+        display.getCanvas().addMouseListener(mouseManager); //NEW
+        display.getCanvas().addMouseMotionListener(mouseManager); //NEW
         Assets.init(); //Initializes our assets. (Textures and images.
 
         gameState = new GameState(this);
-        State.setState(gameState);
+        menuState = new MenuState(this); //NEW
+        State.setState(menuState); //Changed from gameState to menuState
     }
 
+    //NEW
+    public KeyManager getKeyManager(){
+        return keyManager;
+    }
+    
+    //NEW
+    public MouseManager getMouseManager(){
+        return mouseManager;
+    }
 
     public synchronized void start() {
         if (running) {
