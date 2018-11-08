@@ -1,29 +1,39 @@
+package dev.pro.game.gfx;
+
 import java.awt.image.BufferedImage;
 
 public class Assets {
+	
+	private static final int width = 32, height = 32;
+	
+	public static BufferedImage  forestFore,forestMid, forestBack,  inn;
+	public static BufferedImage[] cart, skeleman, skeleman_tele;
+	
+	public static void init() { //Load in everything for our game.
+		SpriteSheet skele = new SpriteSheet(ImageLoader.loadImage("/textures/SkelemanSpriteSheet.png"));
+		SpriteSheet overWorld = new SpriteSheet(ImageLoader.loadImage("/textures/CartSpriteSheet.png"));
+		cart = new BufferedImage[2];
+		
+		cart[0] = overWorld.crop(0, 0, 94, 64); 
+		cart[1] = overWorld.crop(0, 64, 94, 64);
+		
+		skeleman = new BufferedImage[2];
+		skeleman[0] = skele.crop(0, 0, width, height);
+		skeleman[1] = skele.crop(32, 0, width, height);
+		
+		skeleman_tele = new BufferedImage[3];
+		skeleman_tele[0] = skele.crop(0, 0, width, height);
+		skeleman_tele[1] = skele.crop(64, 0, width, height);
+		skeleman_tele[2] = skele.crop(0, 32, width, height);
 
-    private static final int W = 32, H = 32; //Default for players, maybe some monsters.
-    public static BufferedImage forestBack, forestMid, forestFore, inn;
-    public static BufferedImage[] cart, skeleman;
+		
+		SpriteSheet shops = new SpriteSheet(ImageLoader.loadImage("/textures/OverWorldStuffSpriteSheet.png"));
+		inn = shops.crop(0, 0, 63, 63);
+		
+		forestFore = ImageLoader.loadImage("/textures/ForestForeGround.png");
+		forestMid = ImageLoader.loadImage("/textures/ForestMidGround.png");
+		forestBack = ImageLoader.loadImage("/textures/ForestBackGround.png");
 
-    public static void init() {
-        SpriteSheet skele = new SpriteSheet(ImageLoader.loadImage("textures/SkelemanSpriteSheet.png"));
-        skeleman = new BufferedImage[2];
-        skeleman[0] = skele.crop(0,0, W, H);
-        skeleman[1] = skele.crop(32,0, W, H);
-        //skeleman[2] = skele.crop(64,0, W, H);
-        //skeleman[3] = skele.crop(0,32, W, H);
+	}
 
-        SpriteSheet overWorld = new SpriteSheet((ImageLoader.loadImage("textures/CartSpriteSheet.png")));
-        cart = new BufferedImage[2]; //Cart animations.
-        cart[0] = overWorld.crop(0,0,94,64);
-        cart[1] = overWorld.crop(0,64,94,64);
-
-        SpriteSheet shops = new SpriteSheet(ImageLoader.loadImage("textures/OverWorldStuffSpriteSheet.png"));
-        inn = shops.crop(0,0, 63, 63);
-
-        forestFore = ImageLoader.loadImage("textures/ForestForeGround.png");
-        forestMid = ImageLoader.loadImage("textures/ForestMidGround.png");
-        forestBack = ImageLoader.loadImage("textures/ForestBackGround.png");
-    }
 }

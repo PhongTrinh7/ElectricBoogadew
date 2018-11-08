@@ -1,3 +1,8 @@
+package dev.pro.game.ui;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class UIImageButton extends UIObject{
 	
 	private ClickListener clicker;
