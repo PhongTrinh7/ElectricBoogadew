@@ -1,4 +1,3 @@
-package dev.pro.game.ui;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;

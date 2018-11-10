@@ -1,4 +1,3 @@
-package dev.pro.game.gfx;
 
 import java.awt.image.BufferedImage;
 

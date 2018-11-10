@@ -1,4 +1,3 @@
-package dev.pro.game.ui;
 
 public interface ClickListener {
 	
