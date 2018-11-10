@@ -25,6 +25,8 @@ public class CombatState extends State{
 			public void onClick() {
 				game.getMouseManager().setUIManager(null);
 				State.setState(game.gameState);
+				
+
 			}}));
 		
 		
@@ -38,13 +40,14 @@ public class CombatState extends State{
 		
 		skele_tele_animation.tick();
 		
+		
 		if(skele_tele_animation.getIndex() == 2) {
 			skeleX = 500;
 		}
 		if(skele_tele_animation.getIndex() == 0) {
 			skeleX = 150;
 		}
-
+		
 	}
 
 	@Override

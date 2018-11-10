@@ -1,8 +1,11 @@
-import java.awt.*;
+package dev.pro.game.gameobjects;
 
-public interface GameObject { //Self explanatory.
+import java.awt.Graphics;
 
-    void tick();
+public interface GameObject {
+	
+	void tick();
+	
+	void render(Graphics g);
 
-    void render(Graphics g);
 }

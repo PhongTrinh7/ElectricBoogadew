@@ -1,7 +1,12 @@
-public class Launcher {
+package dev.pro.game;
 
-    public static void main(String[] args) {
-        Game game = new Game("Test", 1280, 720);
-        game.start();
-    }
+import dev.pro.game.display.Display;
+
+public class Launcher {
+	
+	public static void main(String[] args) {
+		Game game = new Game("Title Game", 1280, 720);
+		game.start();
+	}
+
 }

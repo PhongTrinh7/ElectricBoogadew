@@ -1,16 +1,22 @@
-import javax.imageio.ImageIO;
+package dev.pro.game.gfx;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class ImageLoader {
+import javax.imageio.ImageIO;
 
-    public static BufferedImage loadImage(String path) {
-        try {
-            return ImageIO.read(ImageLoader.class.getResource(path));
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        return null;
-    }
+public class ImageLoader {
+	
+	public static BufferedImage loadImage(String path) {//String is the name if the image
+		//Will load in the image.
+		try {
+			return ImageIO.read(ImageLoader.class.getResource(path));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1); //Exits game in case image doesnt load.
+		}
+		return null;
+	}
+
 }

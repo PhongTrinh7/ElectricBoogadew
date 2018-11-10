@@ -1,33 +1,45 @@
-import java.awt.*;
-import java.awt.image.BufferedImage;
+package dev.pro.game.gameobjects.creatures;
 
-public class Player extends Creature{ //This will be the basis for the characters.
+import java.awt.Graphics;
 
-    private Game game;
-    private boolean dysentery;
-    private String name;
-    private Animation animation;
+import dev.pro.game.Game;
+import dev.pro.game.gfx.Assets;
 
-    public Player(Game game, float x, float y, String name, BufferedImage[] f) {
-        super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
-        this.game = game;
-        dysentery = false;
-        this.name = name;
-        animation = new Animation(500, f);
-    }
+public class Player extends Creature{
+	
+	private boolean dysentary;
+	private String name;
+	private Game game;
 
-    public String getSick() {
-        dysentery = true;
-        health = health/2;
-        return name + " has dysentery.";
-    }
-    @Override
-    public void tick() {
-        animation.tick();
-    }
+	public Player(Game game, float x, float y, String name) {
+		super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
+		dysentary = false;
+		this.name = name;
+		this.game = game;
+	}
 
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(animation.getAnimationFrame(), (int) x, (int) y, DEFAULT_WIDTH, DEFAULT_HEIGHT, null);
-    }
+
+
+	@Override
+	public void tick() {
+		if(game.getKeyManager().up) {
+			y -= 3;
+		}
+		if(game.getKeyManager().down) {
+			y += 3;
+		}
+		if(game.getKeyManager().left) {
+			x -= 3;
+		}
+		if(game.getKeyManager().right) {
+			x += 3;
+		}
+		
+	}
+
+	@Override
+	public void render(Graphics g) {
+		//g.drawImage(Assets.skeleman_idle1, (int)x, (int)y, width, height, null);
+		
+	}
 }
