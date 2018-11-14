@@ -1,17 +1,27 @@
+package dev.pro.game.states;
 
 import java.awt.Graphics;
 
-public class CombatState extends State{
+import dev.pro.game.Game;
+import dev.pro.game.gameobjects.creatures.Player;
+import dev.pro.game.gfx.Animation;
+import dev.pro.game.gfx.Assets;
+import dev.pro.game.ui.ClickListener;
+import dev.pro.game.ui.UIImageButton;
+import dev.pro.game.ui.UIManager;
 
-    private Player skele;
+public class CombatState extends State{
+	
+	private Player skele;
+	private boolean action;
 	
     private UIManager combatUI;
 	//private Animation skele_tele_animation;
-	private boolean action;
+	//int skeleX = 150;
 	
 	public CombatState(Game game) {
 		super(game);
-
+		
 		skele = new Player(game, 480, 400, "Skele", Assets.skeleman);
 		skele.addAnimation(Assets.skeleman_tele);
 		action = false;
@@ -21,9 +31,12 @@ public class CombatState extends State{
 		combatUI.addObject(new UIImageButton(200, 200, 64, 64, new ClickListener() {
 			
 			public void onClick() {
-                action = true;
+				//skele.setAction(true);
+				action = true;
 				//game.getMouseManager().setUIManager(null);
 				//State.setState(game.gameState);
+				
+
 			}}));
 		
 		
@@ -34,20 +47,20 @@ public class CombatState extends State{
 	@Override
 	public void tick() {
 	    combatUI.tick();
-	    skele.tick();
+		
+		skele.tick();
+		
 	}
 
 	@Override
 	public void render(Graphics g) {
-	    if (action) {
-	        skele.action(g, 1);
-	        action = false;
-        }
-        else {
-            combatUI.render(g);
-            skele.render(g);
-            //g.drawImage(skele_tele_animation.getAnimationFrame(), skeleX, 530, 150, 100, null);
-        }
+		if(action) {
+			skele.action(1);
+			action = false;
+		}
+		combatUI.render(g);
+		skele.render(g);
+		//g.drawImage(skele_tele_animation.getCurrentFrame(), skeleX, 530, 150, 100, null);
 	}
 
 }

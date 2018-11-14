@@ -1,3 +1,4 @@
+package dev.pro.game.gfx;
 
 import java.awt.image.BufferedImage;
 
@@ -20,10 +21,11 @@ public class Assets {
 		skeleman[0] = skele.crop(0, 0, width, height);
 		skeleman[1] = skele.crop(32, 0, width, height);
 		
-		skeleman_tele = new BufferedImage[3];
-		skeleman_tele[0] = skele.crop(0, 0, width, height);
+		skeleman_tele = new BufferedImage[4];
+		skeleman_tele[0] = skele.crop(0, 0, width, height);//buffer frame
 		skeleman_tele[1] = skele.crop(64, 0, width, height);
 		skeleman_tele[2] = skele.crop(0, 32, width, height);
+		skeleman_tele[3] = skele.crop(0, 0, width, height); //buffer frame
 
 		
 		SpriteSheet shops = new SpriteSheet(ImageLoader.loadImage("/textures/OverWorldStuffSpriteSheet.png"));
