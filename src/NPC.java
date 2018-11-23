@@ -11,6 +11,7 @@ import dev.pro.game.gfx.Assets;
 public class NPC extends Creature{
 	
 	private Game game;
+	private boolean lightning = false;
 	
 	private ArrayList<Animation> animations;
 
@@ -40,7 +41,7 @@ public class NPC extends Creature{
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(animations.get(0).getCurrentFrame(), (int) x, (int) y, width, height, null);
-		if(animations.get(0).getIndex() == 1) {
+		if(lightning) {
 			g.drawImage(Assets.gravy_lightning[0], 820, 420, null);
 		}
 
@@ -49,5 +50,8 @@ public class NPC extends Creature{
 	//Make a method that checks if the current index from skele
 	//is the last index of the action array and make an
 	//if statement in render so it will draw the lightning.
+	public void setLightning(boolean L) {
+		lightning = L;
+	}
 
 }

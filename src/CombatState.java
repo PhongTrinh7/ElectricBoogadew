@@ -67,6 +67,9 @@ public class CombatState extends State{
 		//Make an if statement that compares the 
 		//current frame of skele to see if they are done
 		//with the attack animation.
+		if(skele.getCurrentIndex() == 3) {
+			gravy.setLightning(true);
+		}
 		
 		combatUI.render(g);
 		skele.render(g);
