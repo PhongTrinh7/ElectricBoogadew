@@ -3,6 +3,7 @@ package dev.pro.game.states;
 import java.awt.Graphics;
 
 import dev.pro.game.Game;
+import dev.pro.game.gameobjects.creatures.NPC;
 import dev.pro.game.gameobjects.creatures.Player;
 import dev.pro.game.gfx.Animation;
 import dev.pro.game.gfx.Assets;
@@ -12,6 +13,7 @@ import dev.pro.game.ui.UIManager;
 
 public class CombatState extends State{
 	
+	private NPC gravy;
 	private Player skele;
 	private boolean action;
 	
@@ -22,6 +24,8 @@ public class CombatState extends State{
 	public CombatState(Game game) {
 		super(game);
 		
+		gravy = new NPC(game, 780, 400, Assets.gravy);
+		gravy.addAnimation(Assets.gravy_action);
 		skele = new Player(game, 480, 400, "Skele", Assets.skeleman);
 		skele.addAnimation(Assets.skeleman_tele);
 		action = false;
@@ -49,6 +53,7 @@ public class CombatState extends State{
 	    combatUI.tick();
 		
 		skele.tick();
+		gravy.tick();
 		
 	}
 
@@ -58,8 +63,14 @@ public class CombatState extends State{
 			skele.action(1);
 			action = false;
 		}
+       
+		//Make an if statement that compares the 
+		//current frame of skele to see if they are done
+		//with the attack animation.
+		
 		combatUI.render(g);
 		skele.render(g);
+		gravy.render(g);
 		//g.drawImage(skele_tele_animation.getCurrentFrame(), skeleX, 530, 150, 100, null);
 	}
 
