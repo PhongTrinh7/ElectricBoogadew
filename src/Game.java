@@ -49,8 +49,8 @@ public class Game implements Runnable{
 
         gameState = new GameState(this);
         menuState = new MenuState(this); //NEW
-        //combatState = new CombatState(this); Don't construct a combatState here if you want the button in menu to work.
-        State.setState(menuState); //Changed from gameState to menuState
+        combatState = new CombatState(this); //Don't construct a combatState here if you want the button in menu to work.
+        State.setState(combatState); //Changed from gameState to menuState
     }
 
     //NEW

@@ -27,6 +27,10 @@ public class Animation {
         }
     }
 
+    public int getSize() {
+        return frames.length;
+    }
+
     public int getIndex() {
         return index;
     }
@@ -35,7 +39,7 @@ public class Animation {
         this.index = index;
     }
 
-    public BufferedImage getAnimationFrame() {
+    public BufferedImage getCurrentFrame() {
         return frames[index];
     }
 }

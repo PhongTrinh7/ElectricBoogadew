@@ -59,7 +59,7 @@ public class GameState extends State{
         g.drawImage(Assets.forestMid, mgx, 0, 2800, 720, null);
         g.drawImage(Assets.forestFore, fgx,0,3600,720,null);
         g.drawImage(Assets.inn, fgx + 3350, 435, 200, 200, null);
-        g.drawImage(cart_Animation.getAnimationFrame(),cartx,530, 150,100,null);
+        g.drawImage(cart_Animation.getCurrentFrame(),cartx,530, 150,100,null);
         if (event) {
             dogEvent.render(g);
             event();
