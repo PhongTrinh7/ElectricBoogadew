@@ -5,6 +5,7 @@ public class CombatState extends State{
 	
 	private Player gravy;
 	private NPC skeleDog;
+	private NPC sword;
 	private boolean action, enemy_Turn;
 	private int actionIndex;
     private UIManager combatUI;
@@ -19,9 +20,13 @@ public class CombatState extends State{
 		gravy.addProjectile(Assets.gravy_lightning);
 
 
-		//Skele assets.
+		//SkeleDog assets.
 		skeleDog = new NPC(480, 380, 300, 200, Assets.skeleDog);
 		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
+
+		//Sword assets.
+		sword = new NPC(520, 360, 300, 200, Assets.sword);
+		sword.addAnimation(Assets.swordAtk, 500);
 
 		
 		combatUI = new UIManager(game);
@@ -50,6 +55,7 @@ public class CombatState extends State{
 			combatUI.tick();
 		}
 
+		sword.tick();
 		gravy.tick();
 		skeleDog.tick();
 	}
@@ -61,7 +67,8 @@ public class CombatState extends State{
 			action = false;
 		}
 		if (enemy_Turn) {
-			skeleDog.attack();
+			//skeleDog.attack();
+			sword.attack();
 			enemy_Turn = false;
 		}
        
@@ -70,6 +77,7 @@ public class CombatState extends State{
 		//with the attack animation.
 		combatUI.render(g);
 		skeleDog.render(g);
+		sword.render(g);
 		gravy.render(g);
 	}
 

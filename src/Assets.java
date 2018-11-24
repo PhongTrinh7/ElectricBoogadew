@@ -9,6 +9,7 @@ public class Assets {
 	public static BufferedImage[] cart;
 	public static BufferedImage[] skeleman, skeleman_tele, gravy, gravy_action;
 	public static BufferedImage[] skeleDog, skeleDogAtk;
+	public static BufferedImage[] sword, swordAtk;
 	
 	public static void init() { //Load in everything for our game.
 		//Skeleman Stuff.
@@ -72,8 +73,20 @@ public class Assets {
 		skeleDogAtk[8] = skeleDogSheet.crop(0, 96, width*3, height);
 		skeleDogAtk[9] = skeleDogSheet.crop(0, 64, width*3, height);
 
+		//Sword
+		SpriteSheet swordSprSht = new SpriteSheet(ImageLoader.loadImage("/textures/SwordBitSprSht.png"));
+		sword = new BufferedImage[2];
+		sword[0] = swordSprSht.crop(0, 0, width*3, height);
+		sword[1] = swordSprSht.crop(0, 32, width*3, height);
 
-
+		swordAtk = new BufferedImage[7];
+		swordAtk[0] = swordSprSht.crop(0, 64, width*3, height);
+		swordAtk[1] = swordSprSht.crop(0, 96, width*3, height);
+		swordAtk[2] = swordSprSht.crop(0, 128, width*3, height);
+		swordAtk[3] = swordSprSht.crop(0, 96, width*3, height);
+		swordAtk[4] = swordSprSht.crop(0, 128, width*3, height);
+		swordAtk[5] = swordSprSht.crop(0, 96, width*3, height);
+		swordAtk[6] = swordSprSht.crop(0, 128, width*3, height);
 
 		//Over world objects. Use these to mark event triggers i guess.
 		SpriteSheet overWorld = new SpriteSheet(ImageLoader.loadImage("/textures/CartSpriteSheet.png"));
