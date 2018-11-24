@@ -33,8 +33,10 @@ public abstract class Creature implements GameObject { //Any living thing.
         projectiles = new ArrayList<>();
     }
 
-    public void addAnimation(BufferedImage[] frames) { // Use this to add additional animations e.g. attacks or item use.
-        animations.add(new Animation(500, frames));
+    // Use this to add additional animations e.g. attacks or item use.
+    // Added speed parameter to fine tune the animation speed. 500 should be default. Higher is slower.
+    public void addAnimation(BufferedImage[] frames, int speed) {
+        animations.add(new Animation(speed, frames));
     }
 
     public void addProjectile(BufferedImage frame) {
@@ -92,7 +94,7 @@ public abstract class Creature implements GameObject { //Any living thing.
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(animations.get(animation_Index).getCurrentFrame(), (int)x, (int)y, width, height, null);
+        g.drawImage(animations.get(animation_Index).getCurrentFrame(), (int)x, (int)y, animations.get(animation_Index).getCurrentFrame().getWidth()*7, animations.get(animation_Index).getCurrentFrame().getHeight()*7, null);
     }
 
 }

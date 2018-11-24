@@ -4,7 +4,7 @@ import java.awt.Graphics;
 public class CombatState extends State{
 	
 	private Player gravy;
-	private NPC skele;
+	private NPC skeleDog;
 	private boolean action, enemy_Turn;
 	private int actionIndex;
     private UIManager combatUI;
@@ -14,14 +14,14 @@ public class CombatState extends State{
 		action = false;
 
 		//Gravy assets.
-		gravy = new Player(game, 480, 400, "Gravy", Assets.gravy);
-		gravy.addAnimation(Assets.gravy_action);
+		gravy = new Player(game, 380, 400, "Gravy", Assets.gravy);
+		gravy.addAnimation(Assets.gravy_action, 500);
 		gravy.addProjectile(Assets.gravy_lightning);
 
 
 		//Skele assets.
-		skele = new NPC(780, 400, Assets.skeleman);
-		skele.addAnimation(Assets.skeleman_tele);
+		skeleDog = new NPC(480, 380, 300, 200, Assets.skeleDog);
+		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
 
 		
 		combatUI = new UIManager(game);
@@ -31,14 +31,14 @@ public class CombatState extends State{
 			
 			public void onClick() {
 				action = true;
-				enemy_Turn = true;
+				//enemy_Turn = true;
 				actionIndex = 1; //1 for attack.
 			}}));
 		//Something else button.
 		combatUI.addObject(new UIImageButton(300, 400, 64, 64, new ClickListener() {
 
 			public void onClick() {
-				action = true;
+				//action = true;
 				enemy_Turn = true;
 				actionIndex = 2; //2 for something else i guess. So on and so forth if we want more buttons.
 			}}));
@@ -51,7 +51,7 @@ public class CombatState extends State{
 		}
 
 		gravy.tick();
-		skele.tick();
+		skeleDog.tick();
 	}
 
 	@Override
@@ -61,14 +61,15 @@ public class CombatState extends State{
 			action = false;
 		}
 		if (enemy_Turn) {
-
+			skeleDog.attack();
+			enemy_Turn = false;
 		}
        
 		//Make an if statement that compares the 
 		//current frame of skele to see if they are done
 		//with the attack animation.
 		combatUI.render(g);
-		skele.render(g);
+		skeleDog.render(g);
 		gravy.render(g);
 	}
 
