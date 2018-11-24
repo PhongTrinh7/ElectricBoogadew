@@ -1,18 +1,24 @@
-import java.awt.*;
+package dev.pro.game.Events;
+
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
- * Created by Phong on 11/15/2018.
- */
+import dev.pro.game.Game;
+import dev.pro.game.states.State;
+
 public class Event {
-
-    private LinkedList<BufferedImage> pages; //Stores the images for this event. Maybe we can just render a pre drawn/written event.
+	
+    private ArrayList<BufferedImage> pages; //Stores the images for this event. Maybe we can just render a pre drawn/written event.
     private int page;
+    private Game game;
+    private boolean event = true;
 
-    public Event (BufferedImage page) {
-        pages = new LinkedList<>();
+    public Event (Game game, BufferedImage page) {
+        pages = new ArrayList<>();
         pages.add(page);
+        this.game = game;
     }
 
     public void addPage(BufferedImage page) {
@@ -26,8 +32,29 @@ public class Event {
     public BufferedImage getPage(int i) {
         return pages.get(page);
     }
+    
+    public boolean getEvent() {
+    	return event;
+    }
+    
+    public void setEvent(boolean e) {
+    	this.event = e;
+    }
+    
+    public void tick() {
+		if(game.getKeyManager().one) {
+			event = true;
+		}
+		if(game.getKeyManager().two) {
+			State.setState(game.combatState);
+		}
+		if(game.getKeyManager().three) {
+			event = true;
+		}
+    }
 
     public void render(Graphics g) {
         g.drawImage(pages.get(page), 160, 90, 960, 540, null);
     }
+
 }
