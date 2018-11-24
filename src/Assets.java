@@ -27,17 +27,23 @@ public class Assets {
 
 		//Gravy Stuff.
 		SpriteSheet gravySprite = new SpriteSheet(ImageLoader.loadImage("/textures/GravySpriteSheet.png"));
+		SpriteSheet gravySprite1 = new SpriteSheet(ImageLoader.loadImage("/textures/GravySprSht1.png"));
+		SpriteSheet gravySprite2 = new SpriteSheet(ImageLoader.loadImage("/textures/GravySprSht2.png"));
 		gravy = new BufferedImage[2]; //Idle.
-		gravy[0] = gravySprite.crop(0, 0, width, height);
-		gravy[1] = gravySprite.crop(32, 0, width, height);
+		gravy[0] = gravySprite1.crop(0, 0, width, height);
+		gravy[1] = gravySprite1.crop(0, 32, width, height);
 		
-		gravy_action = new BufferedImage[6];
-		gravy_action[0] = gravySprite.crop(0, 32, width, height);
-		gravy_action[1] = gravySprite.crop(0, 32, width, height);
-		gravy_action[2] = gravySprite.crop(0, 32, width, height);
-		gravy_action[3] = gravySprite.crop(64, 0, width, height);
-		gravy_action[4] = gravySprite.crop(64, 0, width, height);
-		gravy_action[5] = gravySprite.crop(64, 0, width, height);
+		gravy_action = new BufferedImage[10];
+		gravy_action[0] = gravySprite1.crop(0, 64, width*3, height);
+		gravy_action[1] = gravySprite1.crop(0, 64, width*3, height);
+		gravy_action[2] = gravySprite2.crop(0, 0, width*3, height);
+		gravy_action[3] = gravySprite2.crop(0, 32, width*3, height);
+		gravy_action[4] = gravySprite2.crop(0, 64, width*3, height);
+		gravy_action[5] = gravySprite2.crop(0, 96, width*3, height);
+		gravy_action[6] = gravySprite2.crop(0, 128, width*3, height);
+		gravy_action[7] = gravySprite2.crop(0, 96, width*3, height);
+		gravy_action[8] = gravySprite2.crop(0, 128, width*3, height);
+		gravy_action[9] = gravySprite2.crop(0, 96, width*3, height);
 		
 		
 		gravy_lightning = gravySprite.crop(0, 64, width, height);
