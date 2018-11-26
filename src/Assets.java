@@ -7,7 +7,7 @@ public class Assets {
 	
 	public static BufferedImage  forestFore, forestMid, forestBack, inn, dog, gravy_lightning;
 	public static BufferedImage[] cart;
-	public static BufferedImage[] skeleman, skeleman_tele, gravy, gravy_action;
+	public static BufferedImage[] skeleman, skeleman_tele, gravy, gravy_action, bunj, bunj_smash;
 	public static BufferedImage[] skeleDog, skeleDogAtk;
 	public static BufferedImage[] sword, swordAtk;
 	
@@ -24,6 +24,24 @@ public class Assets {
 		skeleman_tele[2] = skele.crop(0, 32, width, height);
 		skeleman_tele[3] = skele.crop(0, 0, width, height); //buffer frame
 
+
+		//Bunjamen Stuff.
+		SpriteSheet bunjSprSht = new SpriteSheet(ImageLoader.loadImage("/textures/BunjSprSht.png"));
+		bunj = new BufferedImage[2];
+		bunj[0] = bunjSprSht.crop(0,0, width*3, height);
+		bunj[1] = bunjSprSht.crop(0,32, width*3, height);
+
+		bunj_smash = new BufferedImage[10];
+		bunj_smash[0] = bunjSprSht.crop(0,64, width*3, height);
+		bunj_smash[1] = bunjSprSht.crop(0,64, width*3, height);
+		bunj_smash[2] = bunjSprSht.crop(0,64, width*3, height);
+		bunj_smash[3] = bunjSprSht.crop(0,96, width*3, height);
+		bunj_smash[4] = bunjSprSht.crop(0,160, width*3, height);
+		bunj_smash[5] = bunjSprSht.crop(0,160, width*3, height);
+		bunj_smash[6] = bunjSprSht.crop(0,128, width*3, height);
+		bunj_smash[7] = bunjSprSht.crop(0,128, width*3, height);
+		bunj_smash[8] = bunjSprSht.crop(0,160, width*3, height);
+		bunj_smash[9] = bunjSprSht.crop(0,160, width*3, height);
 
 
 		//Gravy Stuff.

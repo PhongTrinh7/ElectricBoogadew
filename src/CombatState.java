@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class CombatState extends State{
 	
-	private Player gravy;
+	private Player gravy, bunj;
 	private NPC skeleDog;
 	private NPC sword;
 	private boolean action, enemy_Turn;
@@ -19,6 +19,9 @@ public class CombatState extends State{
 		gravy.addAnimation(Assets.gravy_action, 500);
 		gravy.addProjectile(Assets.gravy_lightning);
 
+		//Bunj assets.
+		bunj = new Player(game, 250, 200, "Bunj", Assets.bunj);
+		bunj.addAnimation(Assets.bunj_smash, 500);
 
 		//SkeleDog assets.
 		skeleDog = new NPC(480, 380, 300, 200, Assets.skeleDog);
@@ -55,6 +58,7 @@ public class CombatState extends State{
 			combatUI.tick();
 		}
 
+		bunj.tick();
 		sword.tick();
 		gravy.tick();
 		skeleDog.tick();
@@ -68,14 +72,12 @@ public class CombatState extends State{
 		}
 		if (enemy_Turn) {
 			//skeleDog.attack();
-			sword.attack();
+			//sword.attack();
+			bunj.action(1);
 			enemy_Turn = false;
 		}
-       
-		//Make an if statement that compares the 
-		//current frame of skele to see if they are done
-		//with the attack animation.
 		combatUI.render(g);
+		bunj.render(g);
 		skeleDog.render(g);
 		sword.render(g);
 		gravy.render(g);
