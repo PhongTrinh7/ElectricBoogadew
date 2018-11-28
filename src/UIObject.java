@@ -1,3 +1,8 @@
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+
 public abstract class UIObject {
 	
 	protected float x , y;
