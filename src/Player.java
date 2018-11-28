@@ -1,29 +1,26 @@
-import java.awt.*;
 
-public class Player extends Creature{ //This will be the basis for the characters.
+import java.awt.image.BufferedImage;
 
-    private Game game;
-    private boolean dysentery;
-    private String name;
+public class Player extends Creature{
+	
+	private boolean dysentary;
+	private String name;
+	private Game game;
 
-    public Player(Game game, float x, float y, String name) {
-        super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT);
-        this.game = game;
-        dysentery = false;
-        this.name = name;
-    }
+	public Player(Game game, float x, float y, String name, BufferedImage[] frames) {
+		super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, frames);
+		dysentary = false;
+		this.name = name;
+		this.game = game;
+	}
 
     public String getSick() {
-        dysentery = true;
+        dysentary = true;
+        health = health/2;
         return name + " has dysentery.";
     }
-    @Override
-    public void tick() {
 
-    }
-
-    @Override
-    public void render(Graphics g) {
-        g.drawImage(Assets.skeleman_idle1, (int) x, (int) y, null);
-    }
+	public void action(int i) { // Use this to play a single non-repeating action.
+		animation_Index = i;
+	}
 }
