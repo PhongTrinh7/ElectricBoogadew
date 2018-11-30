@@ -17,6 +17,7 @@ public class CombatState extends State{
 	private NPC skeleDog, sword;
 	private boolean action1, action2, action3;
 	private int actionIndex, actionIndex2, actionIndex3;
+	private int potionCount1, potionCount2, potionCount3;
 	
     private UIManager combatUI;
 
@@ -39,6 +40,7 @@ public class CombatState extends State{
 		
 		skeleDog = new NPC(580, 400, 300, 200, 100, Assets.skeleDog);
 		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
+		skeleDog.addAnimation(Assets.skeleDog_dead, 500);
 		
         sword = new NPC(780, 400, 300, 200, 100, Assets.sword);
         sword.addAnimation(Assets.swordAtk, 500);
@@ -47,6 +49,9 @@ public class CombatState extends State{
 		action2 = false;
 		action3 = false;
 	
+		potionCount1 = 3;
+		potionCount2 = 3;
+		potionCount3 = 3;
 		
 		combatUI = new UIManager(game);
 		game.getMouseManager().setUIManager(combatUI);
@@ -77,19 +82,28 @@ public class CombatState extends State{
 		combatUI.addObject(new UIImageButton(150, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Gravy.
 
 			public void onClick() {
-                gravy.setHealth((gravy.getHealth() + 5));
+				if(potionCount1 != 0) {
+					gravy.setHealth((gravy.getHealth() + 10));
+					potionCount1 -= 1;
+				}
 			}}));
 		
 		combatUI.addObject(new UIImageButton(250, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Bunj.
 
 			public void onClick() {
-                bunj.setHealth((bunj.getHealth() + 5));
+				if(potionCount2 != 0) {
+					bunj.setHealth((bunj.getHealth() + 10));
+					potionCount2 -= 1;
+				}
 			}}));
 		
 		combatUI.addObject(new UIImageButton(350, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Skele.
 
 			public void onClick() {
-                skele.setHealth((skele.getHealth() + 5));
+				if(potionCount3 != 0) {
+					skele.setHealth((skele.getHealth() + 10));
+					potionCount3 -= 1;
+				}
 			}}));
     }
     
@@ -99,14 +113,17 @@ public class CombatState extends State{
 		if(!action3) {
 	        combatUI.tick();
 		}
-		if(skeleDog.getHealth() == 0 && sword.getHealth() == 0) { //No death animation so it just switches.
-			State.setState(game.gameState);
+		if(skeleDog.getHealth() <= 0) { //No death animation so it just switches.
+			if(game.getKeyManager().enter) {
+				game.getMouseManager().setUIManager(null);
+				State.setState(game.gameState);
+			}
 		}
 		skeleDog.tick();
 		skele.tick();
 		gravy.tick();
 		bunj.tick();
-		sword.tick();
+	//	sword.tick();
 		
 	}
 
@@ -143,24 +160,28 @@ public class CombatState extends State{
 			}
 			action3 = false;
 		}
-		if(skeleDog.getHealth() != 0) { //To make sure SkeleDog doesn't attack even if he's dead.
-			if(skele.getCurrentIndex() == 3) {//SkeleDog's actions
-				if(gravy.getHealth() > 0) {
-					skeleDog.attack();
-					gravy.setHealth((gravy.getHealth() - 1));
-				}
-				else if(bunj.getHealth() > 0) {
-					skeleDog.attack();
-					bunj.setHealth((bunj.getHealth() - 1));
-				}
-				else if(skele.getHealth() > 0){
-					skeleDog.attack();
-					skele.setHealth((skele.getHealth() - 1));
-				}
 
+		if(skele.getCurrentIndex() == 3) {//SkeleDog's actions
+			if(gravy.getHealth() > 0) {
+				skeleDog.attack();
+				gravy.setHealth((gravy.getHealth() - 1));
 			}
+			else if(bunj.getHealth() > 0) {
+				skeleDog.attack();
+				bunj.setHealth((bunj.getHealth() - 1));
+			}
+			else if(skele.getHealth() > 0){
+				skeleDog.attack();
+				skele.setHealth((skele.getHealth() - 1));
+			}
+
 		}
 		
+		if(skeleDog.getHealth() <= 0) {
+			g.drawImage(Assets.victory, 580, 80, 300, 200, null);
+		}
+		
+		/*
 		if(skeleDog.getHealth() == 0) {//For when skeleDog is dead so sword will still go after skele
 			if(skele.getCurrentIndex() == 3) { //Sword's action.
 			    sword.attack();
@@ -175,14 +196,14 @@ public class CombatState extends State{
 		    skele.setHealth(skele.getHealth() - 1);
 		    bunj.setHealth(bunj.getHealth() - 1);
 		}
-       
+       */
 		//Render each button separately. I try.
 		combatUI.render(g);
 		skeleDog.render(g);
 		skele.render(g);
 		gravy.render(g);
 		bunj.render(g);
-		sword.render(g);
+		//sword.render(g);
 	}
 
 }

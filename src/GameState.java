@@ -15,7 +15,7 @@ public class GameState extends State{
 	
 	//private boolean event;
 	//private UIManager gameUI;
-	private Event dogEvent;
+	private Event dogEvent, eggEvent;
 	
 	private Animation cart_Animation;
 	
@@ -27,6 +27,10 @@ public class GameState extends State{
 		//event = false;
 		
 		dogEvent = new Event(game, Assets.dog);
+		dogEvent.addPage(Assets.dog_oil);
+		dogEvent.addPage(Assets.dog_demon);
+		
+		eggEvent = new Event(game, Assets.egg);
 		
 	}
 	
@@ -37,11 +41,13 @@ public class GameState extends State{
 	@Override
 	public void tick() {
 	    
-		if(dogEvent.getEvent()) {
+		if(dogEvent.getEvent() && eggEvent.getEvent()) {
 			
 		    if(fgx == -200) {
-			    dogEvent.setEvent(false);
-			    
+			    dogEvent.setEvent(false); 
+		    }
+		    if(fgx == -400) {
+		    	eggEvent.setEvent(false);
 		    }
 		    if(mgx > -1160){
 			    mgx -=1;
@@ -57,10 +63,13 @@ public class GameState extends State{
 			    }
 		    }
 		}
-		else {
+		else if(!dogEvent.getEvent()){
 			dogEvent.tick();
-
 		}
+		else if(!eggEvent.getEvent()) {
+			eggEvent.tick();
+		}
+		
 	}
 
 	@Override
@@ -74,6 +83,9 @@ public class GameState extends State{
 	    if(!dogEvent.getEvent()) {
 	    	dogEvent.render(g);
 
+	    }
+	    if(!eggEvent.getEvent()) {
+	    	eggEvent.render(g);
 	    }
 	    
 	}

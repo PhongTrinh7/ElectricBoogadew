@@ -6,9 +6,9 @@ public class Assets {
 	
 	private static final int width = 32, height = 32;
 	
-	public static BufferedImage  forestFore,forestMid, forestBack,  inn, gravy_lightning, dog;
+	public static BufferedImage  forestFore,forestMid, forestBack,  inn, gravy_lightning, dog, victory, dog_oil, dog_demon, egg;
 	public static BufferedImage[] cart, skeleman, skeleman_tele, gravy, gravy_action, skele_hit, bunj, bunj_smash, sword;
-	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead;
+	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead;
 	public static BufferedImage[] skeleDog, skeleDogAtk, swordAtk;
 	public static BufferedImage[] bunj_button, gravy_button, skele_button, start_button, potion_button;
 	public static void init() { //Load in everything for our game.
@@ -23,10 +23,16 @@ public class Assets {
 		SpriteSheet skeleDogSheet = new SpriteSheet(ImageLoader.loadImage("/textures/SkeleDogSprSht.png"));
 		SpriteSheet swordSprSht = new SpriteSheet(ImageLoader.loadImage("/textures/SwordBitSprSht.png"));
 		SpriteSheet buttonSprt = new SpriteSheet(ImageLoader.loadImage("/textures/ButtonsSprSht.png"));
+		SpriteSheet WRequest = new SpriteSheet(ImageLoader.loadImage("/textures/WesleyRequests.png"));
+		SpriteSheet dogOil = new SpriteSheet(ImageLoader.loadImage("/textures/Dog_Event_Oil.png"));
+		SpriteSheet dogDemon = new SpriteSheet(ImageLoader.loadImage("/textures/Dog_Event_Play.png"));
+		SpriteSheet eggEvent = new SpriteSheet(ImageLoader.loadImage("/textures/Event_Egg_Main.png"));
+		
+		//Victory Banner
+		victory = WRequest.crop(0, 0, width*3, height);
 		
 		//Cart
 		cart = new BufferedImage[2];
-		
 		cart[0] = overWorld.crop(0, 0, 94, 64); 
 		cart[1] = overWorld.crop(0, 64, 94, 64);
 
@@ -114,7 +120,7 @@ public class Assets {
 		bunj_button[1] = buttonSprt.crop(0, 32, width, height);
 		
 		bunj_dead = new BufferedImage[1];
-		bunj_dead[0] = bunjSprSht.crop(0, 0, width*3, height);
+		bunj_dead[0] = WRequest.crop(0, 32, width*3, height);
 		
 		//sword
 		sword = new BufferedImage[2];
@@ -133,6 +139,9 @@ public class Assets {
    
 		//Event
 		dog = dogEvent.crop(0, 0, 640, 360);
+		dog_oil = dogOil.crop(0, 0, 640, 360); 
+		dog_demon = dogDemon.crop(0, 0, 640, 360);
+		egg = eggEvent.crop(0, 0, 640, 360);
 		
 		//SkeleDog
 		skeleDog = new BufferedImage[2];
@@ -151,6 +160,9 @@ public class Assets {
 		skeleDogAtk[8] = skeleDogSheet.crop(0, 96, width*3, height);
 		skeleDogAtk[9] = skeleDogSheet.crop(0, 64, width*3, height);
 		skeleDogAtk[10] = skeleDogSheet.crop(0, 64, width*3, height);//Buffer frame for second enemy attack.
+		
+		skeleDog_dead = new BufferedImage[1];
+		skeleDog_dead[0] = WRequest.crop(0, 64, width*3, height);
 
 		//Overworld
 		SpriteSheet shops = new SpriteSheet(ImageLoader.loadImage("/textures/OverWorldStuffSpriteSheet.png"));

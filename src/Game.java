@@ -60,9 +60,9 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 	    gameState = new GameState(this);
 	    menuState = new MenuState(this);
 	    //Commented out for now and is being instantiated in menu state.
-	    combatState = new CombatState(this); 
+	    //combatState = new CombatState(this); 
 	    //Uncomment it if you want to jump straight into combat state.
-	    State.setState(combatState);
+	    State.setState(menuState);
 	}
 	
 	
