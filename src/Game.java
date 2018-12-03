@@ -16,6 +16,9 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 	private BufferStrategy bs;
 	private Graphics g; 
 	
+	public Player gravy, skele, bunj;
+	public NPC skeleDog, sword;
+	
    //States
 	public State gameState;
 	public State menuState;
