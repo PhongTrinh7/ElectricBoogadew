@@ -12,9 +12,6 @@ public class GameState extends State{
 	public GameState(Game game) {
 		super(game);
 		cart_Animation = new Animation(500, Assets.cart);
-		//gameUI = new UIManager(game);
-	    //game.getMouseManager().setUIManager(gameUI);
-		//event = false;
 		
 		dogEvent = new Event(game, Assets.dog);
 		dogEvent.addPage(Assets.dog_oil);
@@ -34,9 +31,12 @@ public class GameState extends State{
 			
 		    if(fgx == -200) {
 			    dogEvent.setEvent(false); 
+			    ((CombatState) game.combatState).setEnemy(game.skeleDog);
 		    }
 		    if(fgx == -400) {
 		    	eggEvent.setEvent(false);
+			((CombatState) game.combatState).setEnemy(game.sword);
+		    	State.setState(game.combatState);
 		    }
 		    if(mgx > -1160){
 			    mgx -=1;
