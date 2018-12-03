@@ -1,14 +1,6 @@
-package dev.pro.game.states;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
-import dev.pro.game.Game;
-import dev.pro.game.gfx.Assets;
-import dev.pro.game.ui.ClickListener;
-import dev.pro.game.ui.UIImageButton;
-import dev.pro.game.ui.UIManager;
-
 
 public class MenuState extends State{
 	
@@ -18,7 +10,7 @@ public class MenuState extends State{
 		super(game);
 		uiManager = new UIManager(game);
 		game.getMouseManager().setUIManager(uiManager);
-		uiManager.addObject(new UIImageButton(200, 200, 64, 64, Assets.start_button, new ClickListener() {
+		uiManager.addObject(new UIImageButton(544, 528, 192, 192, Assets.start_button, new ClickListener() {
 
 			@Override
 			public void onClick() {

@@ -1,19 +1,10 @@
-package dev.pro.game.states;
 
 import java.awt.Graphics;
 
-import dev.pro.game.Game;
-import dev.pro.game.Events.Event;
-import dev.pro.game.gameobjects.creatures.Player;
-import dev.pro.game.gfx.Animation;
-import dev.pro.game.gfx.Assets;
-import dev.pro.game.ui.ClickListener;
-import dev.pro.game.ui.UIImageButton;
-import dev.pro.game.ui.UIManager;
-
 public class GameState extends State{
 	
-
+	//private boolean event;
+	//private UIManager gameUI;
 	private Event dogEvent, eggEvent;
 	
 	private Animation cart_Animation;
@@ -21,13 +12,15 @@ public class GameState extends State{
 	public GameState(Game game) {
 		super(game);
 		cart_Animation = new Animation(500, Assets.cart);
-
+		//gameUI = new UIManager(game);
+	    //game.getMouseManager().setUIManager(gameUI);
+		//event = false;
+		
 		dogEvent = new Event(game, Assets.dog);
 		dogEvent.addPage(Assets.dog_oil);
 		dogEvent.addPage(Assets.dog_demon);
 		
 		eggEvent = new Event(game, Assets.egg);
-		
 	}
 	
     int fgx = 0; //Foreground position.
@@ -40,13 +33,10 @@ public class GameState extends State{
 		if(dogEvent.getEvent() && eggEvent.getEvent()) {
 			
 		    if(fgx == -200) {
-			    dogEvent.setEvent(false);
-			    ((CombatState) game.combatState).setEnemy(game.skeleDog);
+			    dogEvent.setEvent(false); 
 		    }
 		    if(fgx == -400) {
 		    	eggEvent.setEvent(false);
-		    	((CombatState) game.combatState).setEnemy(game.sword);
-		    	State.setState(game.combatState);
 		    }
 		    if(mgx > -1160){
 			    mgx -=1;

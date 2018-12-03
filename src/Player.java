@@ -7,8 +7,8 @@ public class Player extends Creature{
 	private String name;
 	private Game game;
 
-	public Player(Game game, float x, float y, String name, BufferedImage[] frames) {
-		super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, frames);
+	public Player(Game game, float x, float y, String name, int health, BufferedImage[] frames) {
+		super(x, y, Creature.DEFAULT_WIDTH, Creature.DEFAULT_HEIGHT, health, frames);
 		dysentary = false;
 		this.name = name;
 		this.game = game;

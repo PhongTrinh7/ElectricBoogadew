@@ -1,4 +1,3 @@
-package dev.pro.game.gfx;
 
 import java.awt.image.BufferedImage;
 
@@ -8,12 +7,12 @@ public class Assets {
 	
 	public static BufferedImage  forestFore,forestMid, forestBack,  inn, gravy_lightning, dog, victory, dog_oil, dog_demon, egg;
 	public static BufferedImage[] cart, skeleman, skeleman_tele, gravy, gravy_action, skele_hit, bunj, bunj_smash, sword;
-	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead, sword_dead;
+	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead;
 	public static BufferedImage[] skeleDog, skeleDogAtk, swordAtk;
 	public static BufferedImage[] bunj_button, gravy_button, skele_button, start_button, potion_button;
 	public static void init() { //Load in everything for our game.
 		
-		SpriteSheet skele = new SpriteSheet(ImageLoader.loadImage("/textures/SkelemanSpriteSheet.png"));
+		SpriteSheet skele = new SpriteSheet(ImageLoader.loadImage("/textures/SkelemanSprSht.png"));
 		SpriteSheet overWorld = new SpriteSheet(ImageLoader.loadImage("/textures/CartSpriteSheet.png"));
 		SpriteSheet dogEvent = new SpriteSheet(ImageLoader.loadImage("/textures/DogEvent.png"));
 		SpriteSheet gravySprite = new SpriteSheet(ImageLoader.loadImage("/textures/GravySpriteSheet.png"));
@@ -49,16 +48,17 @@ public class Assets {
 		
 		//Skeleman
 		skeleman = new BufferedImage[2];
-		skeleman[0] = skele.crop(0, 0, width, height);
-		skeleman[1] = skele.crop(32, 0, width, height);
+		skeleman[0] = skele.crop(0, 0, width*3, height);
+		skeleman[1] = skele.crop(0, 32, width*3, height);
 		
-		skeleman_tele = new BufferedImage[5];
-		skeleman_tele[0] = skele.crop(0, 0, width, height);//buffer frame
-		skeleman_tele[1] = skele.crop(64, 0, width, height);
-		skeleman_tele[2] = skele.crop(0, 32, width, height);
-		skeleman_tele[3] = skele.crop(0, 0, width, height); //buffer frame
-		skeleman_tele[4] = skele.crop(0, 0, width, height);//Buffer frame for the enemy attack assuming skele is the last to go.
-		
+		skeleman_tele = new BufferedImage[6];
+		skeleman_tele[0] = skele.crop(0, 64, width*4, height);
+		skeleman_tele[1] = skele.crop(0, 64, width*4, height);
+		skeleman_tele[2] = skele.crop(0, 96, width*4, height);
+		skeleman_tele[3] = skele.crop(0, 128, width*4, height); //buffer frame
+		skeleman_tele[4] = skele.crop(0, 160, width*4, height);//Buffer frame for the enemy attack assuming skele is the last to go.
+		skeleman_tele[5] = skele.crop(0, 160, width*4, height);
+
 		skele_hit = new BufferedImage[3];
 		skele_hit[0] = skele.crop(0, 0, width, height);
 		skele_hit[1] = skele.crop(32, 64, width, height);
@@ -136,9 +136,6 @@ public class Assets {
 		swordAtk[5] = swordSprSht.crop(0, 96, width*3, height);
 		swordAtk[6] = swordSprSht.crop(0, 128, width*3, height);
 		swordAtk[7] = swordSprSht.crop(0, 0, width*3, height);
-		
-		sword_dead = new BufferedImage[1];
-		sword_dead[0] = swordSprSht.crop(0, 160, width*3, height);
    
 		//Event
 		dog = dogEvent.crop(0, 0, 640, 360);

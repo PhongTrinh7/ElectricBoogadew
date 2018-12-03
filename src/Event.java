@@ -1,12 +1,9 @@
-package dev.pro.game.Events;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import dev.pro.game.Game;
-import dev.pro.game.states.State;
 
 public class Event {
 	

@@ -1,17 +1,13 @@
-package dev.pro.game.gameobjects.creatures;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import dev.pro.game.gameobjects.GameObject;
-import dev.pro.game.gfx.Animation;
-
 public abstract class Creature implements GameObject{
 
     //public static final int DEFAULT_HEALTH = 100;
-    public static final int DEFAULT_WIDTH = 64, DEFAULT_HEIGHT = 64;
+    public static final int DEFAULT_WIDTH = 5, DEFAULT_HEIGHT = 5;
     protected int health;
     protected int width;
     protected int height;
@@ -33,9 +29,6 @@ public abstract class Creature implements GameObject{
     	animations = new ArrayList<>();
     	animations.add(new Animation(500, frames));
     	projectiles = new ArrayList<>();
-    	
-
-    	
     }
     
     public void addAnimation(BufferedImage[] frames, int speed) {
@@ -106,12 +99,10 @@ public abstract class Creature implements GameObject{
     
 	public void render(Graphics g) {
 		if(health > 0) {	//Only renders when health is greater than zero.
-		    g.drawImage(animations.get(animation_Index).getCurrentFrame(), (int) x, (int) y, null);
-		    g.setColor(Color.GREEN);
-		    g.fillRect((int) x, (int) y-10, health, 5);
+		    g.drawImage(animations.get(animation_Index).getCurrentFrame(), (int) x, (int) y, animations.get(animation_Index).getCurrentFrame().getWidth()*width, animations.get(animation_Index).getCurrentFrame().getHeight()*height,null);
 		}
 		else {//Renders dead frame.
-			g.drawImage(animations.get(2).getCurrentFrame(), (int) x, (int) y, null);
+			g.drawImage(animations.get(2).getCurrentFrame(), (int) x, (int) y,animations.get(animation_Index).getCurrentFrame().getWidth()*width, animations.get(animation_Index).getCurrentFrame().getHeight()*height, null);
 		}
 	}
 	

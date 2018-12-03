@@ -1,10 +1,7 @@
-package dev.pro.game.Events;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import dev.pro.game.Game;
 
 public class Event2 {
 	
