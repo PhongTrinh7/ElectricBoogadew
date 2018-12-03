@@ -42,7 +42,29 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
-	    Assets.init();
+	   	Assets.init();
+		
+		gravy = new Player(this,180, 400, "Gravy", 50, Assets.gravy);
+		gravy.addAnimation(Assets.gravy_action, 500);
+		gravy.addAnimation(Assets.gravy_dead, 500);
+		gravy.addProjectile(Assets.gravy_lightning);
+		
+		skele = new Player(this, 380, 400, "Skele", 50, Assets.skeleman);
+		skele.addAnimation(Assets.skeleman_tele, 500);
+		skele.addAnimation(Assets.skele_dead, 500);
+		
+		bunj = new Player(this, 280, 400, "Bunjamen", 50, Assets.bunj);
+		bunj.addAnimation(Assets.bunj_smash, 500);
+		bunj.addAnimation(Assets.bunj_dead, 500);
+		
+		skeleDog = new NPC(580, 400, 300, 200, 100, Assets.skeleDog);
+		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
+		skeleDog.addAnimation(Assets.skeleDog_dead, 500);
+		
+        	sword = new NPC(780, 400, 300, 200, 100, Assets.sword);
+        	sword.addAnimation(Assets.swordAtk, 500);
+        	sword.addAnimation(Assets.sword_dead, 500);
+	    
 	    
 	    
 	    gameState = new GameState(this);
@@ -91,37 +113,18 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		init();
 		
 		int fps = 30;
-	//	double timePerTick = 1000000000 / fps;
-	//	double delta = 0;
-	//	long now;
-	//	long lastTime = System.nanoTime();
-	//	long timer = 0;
-	//	int ticks = 0;
+
 		
 		while(running) {
-		//	now = System.nanoTime();
-		//	delta += (now - lastTime) / timePerTick;
-		//	timer += now - lastTime;
-		//	lastTime = now;
+	
 			try {
 			  thread.sleep(fps);
 			}catch(InterruptedException e) {
 				e.printStackTrace();
 			}
-		//	if(delta >= 1) {
+		
 			    tick();
 			    render();
-			//    ticks++;
-			//    delta--;
-		//	}
-			
-		//	if(timer >= 1000000000) {
-		//		System.out.println("Ticks and Frames: " + ticks);
-		//		ticks = 0;
-		//		timer = 0;
-			}
-			
-		
 		
 		stop();
 	}
