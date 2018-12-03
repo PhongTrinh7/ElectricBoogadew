@@ -7,7 +7,7 @@ public class Assets {
 	
 	public static BufferedImage  forestFore,forestMid, forestBack,  inn, gravy_lightning, dog, victory, dog_oil, dog_demon, egg;
 	public static BufferedImage[] cart, skeleman, skeleman_tele, gravy, gravy_action, skele_hit, bunj, bunj_smash, sword;
-	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead;
+	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead, sword_dead;
 	public static BufferedImage[] skeleDog, skeleDogAtk, swordAtk;
 	public static BufferedImage[] bunj_button, gravy_button, skele_button, start_button, potion_button;
 	public static void init() { //Load in everything for our game.
@@ -136,6 +136,9 @@ public class Assets {
 		swordAtk[5] = swordSprSht.crop(0, 96, width*3, height);
 		swordAtk[6] = swordSprSht.crop(0, 128, width*3, height);
 		swordAtk[7] = swordSprSht.crop(0, 0, width*3, height);
+		
+		sword_dead = new BufferedImage[1];
+		sword_dead[0] = swordSprSht.crop(0, 160, width*3, height);
    
 		//Event
 		dog = dogEvent.crop(0, 0, 640, 360);
