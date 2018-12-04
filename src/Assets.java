@@ -5,7 +5,7 @@ public class Assets {
 	
 	private static final int width = 32, height = 32;
 	
-	public static BufferedImage  forestFore,forestMid, forestBack,  inn, gravy_lightning, dog, victory, dog_oil, dog_demon, egg;
+	public static BufferedImage  combatBack, forestFore,forestMid, forestBack,  inn, gravy_lightning, dog, victory, dog_oil, dog_demon, egg;
 	public static BufferedImage[] cart, skeleman, skeleman_tele, gravy, gravy_action, skele_hit, bunj, bunj_smash, sword;
 	public static BufferedImage[] gravy_dead, bunj_dead, skele_dead, skeleDog_dead, sword_dead;
 	public static BufferedImage[] skeleDog, skeleDogAtk, swordAtk;
@@ -174,6 +174,8 @@ public class Assets {
 		forestFore = ImageLoader.loadImage("/textures/ForestForeGround.png");
 		forestMid = ImageLoader.loadImage("/textures/ForestMidGround.png");
 		forestBack = ImageLoader.loadImage("/textures/ForestBackGround.png");
+
+		combatBack = ImageLoader.loadImage("/textures/CombatBackGround.png");
 
 	}
 

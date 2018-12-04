@@ -90,11 +90,9 @@ public abstract class Creature implements GameObject{
 
 	public void tick() {
 		animations.get(animation_Index).tick();
-		
 		if(animations.get(animation_Index).getIndex() == animations.get(animation_Index).getSize()-1) {
 			animation_Index = 0;
 		}
-
 	}
     
 	public void render(Graphics g) {
@@ -104,9 +102,5 @@ public abstract class Creature implements GameObject{
 		else {//Renders dead frame.
 			g.drawImage(animations.get(2).getCurrentFrame(), (int) x, (int) y,animations.get(animation_Index).getCurrentFrame().getWidth()*width, animations.get(animation_Index).getCurrentFrame().getHeight()*height, null);
 		}
-	}
-	
-	public int getCurrentIndex() {
-		return animations.get(animation_Index).getIndex();
 	}
 }

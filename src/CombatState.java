@@ -124,6 +124,7 @@ public class CombatState extends State{
 	@Override
 	public void render(Graphics g) {
 		g.drawImage(Assets.forestBack, 0, 0, null);
+		g.drawImage(Assets.combatBack, 0, 360,1280, 360, null);
 		g.setColor(Color.GREEN);
 		g.fillRect( 128, 100, game.gravy.health*3, 20);
 		g.fillRect( 128, 200, game.bunj.health*3, 20);

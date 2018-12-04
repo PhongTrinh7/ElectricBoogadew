@@ -60,11 +60,11 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		bunj.addAnimation(Assets.bunj_smash, 500);
 		bunj.addAnimation(Assets.bunj_dead, 500);
 
-		skeleDog = new NPC(550, 400, 7, 7, 100, Assets.skeleDog);
+		skeleDog = new NPC(450, 400, 8, 8, 100, Assets.skeleDog);
 		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
 		skeleDog.addAnimation(Assets.skeleDog_dead, 500);
 
-		sword = new NPC(780, 400, 300, 200, 100, Assets.sword);
+		sword = new NPC(450, 400, 6, 6, 100, Assets.sword);
 		sword.addAnimation(Assets.swordAtk, 500);
 		sword.addAnimation(Assets.sword_dead, 500);
 
