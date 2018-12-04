@@ -10,7 +10,7 @@ public class Event {
     private ArrayList<BufferedImage> pages; //Stores the images for this event. Maybe we can just render a pre drawn/written event.
     private int page;
     private Game game;
-    private boolean event = true;
+    private boolean eventing;
 
     public Event (Game game, BufferedImage page) {
         pages = new ArrayList<>();
@@ -30,23 +30,25 @@ public class Event {
         return pages.get(page);
     }
     
-    public boolean getEvent() {
-    	return event;
+    public boolean getStatus() {
+    	return eventing;
     }
     
-    public void setEvent(boolean e) {
-    	this.event = e;
+    public void setStatus(boolean e) {
+    	eventing = e;
     }
     
     public void tick() {
 		if(game.getKeyManager().one) {
-			event = true;
+		    page = 0;
+			eventing = false;
 		}
 		if(game.getKeyManager().two) {
-			State.setState(game.combatState);
+		    page = 1;
+            State.setState(new CombatState(game, game.skeleDog));
 		}
 		if(game.getKeyManager().three) {
-			event = true;
+			eventing = false;
 		}
     }
 

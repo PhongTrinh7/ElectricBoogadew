@@ -15,7 +15,6 @@ public class MenuState extends State{
 			@Override
 			public void onClick() {
 				game.getMouseManager().setUIManager(null);
-				game.combatState = new CombatState(game); //NEW Instantiates combat state here instead of Game.
 				State.setState(game.gameState);
 			}}));
 	}

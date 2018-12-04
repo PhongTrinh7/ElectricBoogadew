@@ -27,16 +27,14 @@ public class GameState extends State{
 	@Override
 	public void tick() {
 	    
-		if(dogEvent.getEvent() && eggEvent.getEvent()) {
+		if(!dogEvent.getStatus() && !eggEvent.getStatus()) {
 			
 		    if(fgx == -200) {
-			    dogEvent.setEvent(false); 
-			    ((CombatState) game.combatState).setEnemy(game.skeleDog);
+			    dogEvent.setStatus(true);
 		    }
 		    if(fgx == -400) {
-		    	eggEvent.setEvent(false);
-			((CombatState) game.combatState).setEnemy(game.sword);
-		    	State.setState(game.combatState);
+		    	eggEvent.setStatus(true);
+				//setState(new CombatState(game, game.sword));
 		    }
 		    if(mgx > -1160){
 			    mgx -=1;
@@ -52,10 +50,10 @@ public class GameState extends State{
 			    }
 		    }
 		}
-		else if(!dogEvent.getEvent()){
+		else if(dogEvent.getStatus()){
 			dogEvent.tick();
 		}
-		else if(!eggEvent.getEvent()) {
+		else if(eggEvent.getStatus()) {
 			eggEvent.tick();
 		}
 		
@@ -69,11 +67,11 @@ public class GameState extends State{
 	    g.drawImage(Assets.inn, fgx + 2700, 435, 200, 200, null);
 	    g.drawImage(cart_Animation.getCurrentFrame(),cartx, 530, 150, 100, null);
 	    
-	    if(!dogEvent.getEvent()) {
+	    if(dogEvent.getStatus()) {
 	    	dogEvent.render(g);
 
 	    }
-	    if(!eggEvent.getEvent()) {
+	    if(eggEvent.getStatus()) {
 	    	eggEvent.render(g);
 	    }
 	    
