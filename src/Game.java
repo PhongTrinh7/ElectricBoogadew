@@ -50,7 +50,6 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		gravy = new Player(this,420, 500, "Gravy", 50, Assets.gravy);
 		gravy.addAnimation(Assets.gravy_action, 500);
 		gravy.addAnimation(Assets.gravy_dead, 500);
-		gravy.addProjectile(Assets.gravy_lightning);
 
 		skele = new Player(this, 300, 450, "Skele", 50, Assets.skeleman);
 		skele.addAnimation(Assets.skeleman_tele, 500);

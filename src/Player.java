@@ -14,12 +14,6 @@ public class Player extends Creature{
 		this.game = game;
 	}
 
-    public String getSick() {
-        dysentary = true;
-        health = health/2;
-        return name + " has dysentery.";
-    }
-
 	public void action(int i) { // Use this to play a single non-repeating action.
 		animation_Index = i;
 	}

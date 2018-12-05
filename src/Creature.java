@@ -34,19 +34,6 @@ public abstract class Creature implements GameObject{
     public void addAnimation(BufferedImage[] frames, int speed) {
     	animations.add(new Animation(speed, frames));
     }
-    
-    public void addProjectile(BufferedImage frame) {
-    	projectiles.add(frame);
-    }
-
-    
-    public int getPotion() {
-    	return potion;
-    }
-    
-    public void setPotion(int p) {
-    	this.potion = p;
-    }
 
 	public int getHealth() {
 		return health;
@@ -102,5 +89,13 @@ public abstract class Creature implements GameObject{
 		else {//Renders dead frame.
 			g.drawImage(animations.get(2).getCurrentFrame(), (int) x, (int) y,animations.get(animation_Index).getCurrentFrame().getWidth()*width, animations.get(animation_Index).getCurrentFrame().getHeight()*height, null);
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o == this) {
+			return true;
+		}
+		return false;
 	}
 }
