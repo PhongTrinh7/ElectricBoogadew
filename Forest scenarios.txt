@@ -61,17 +61,47 @@ However you soon realize that this is no ordinary bear. It is much larger than a
  _______________________________________________________________________________________________________________________________________			
 			(I aint got time to write the scripts but here are some outlines)
  4) 						Fight Club
-	The group comes across a crowd of people gathering around in a circle and meet a flamboyant announcer who is casting a fight. Upon seeing the group, he insists that they join the fight club (you can’t refuse). After you beat your first opponent, you can choose whether or not to keep fighting increasingly more difficult opponents up to 3 times. You can leave the fight club early, but you will get no rewards, and the announcer will make fun of you for being a coward, with the crowd booing you. If you beat everyone, you become the champion of the fight club and receive a huge reward.
+	The group comes across a crowd of people gathering around in a circle and meet a 
+	flamboyant announcer who is casting a fight. Upon seeing the group, he insists that 
+	they join the fight club (you can’t refuse). After you beat your first opponent, 
+	you can choose whether or not to keep fighting increasingly more difficult opponents 
+	up to 3 times. You can leave the fight club early, but you will get no rewards, 
+	and the announcer will make fun of you for being a coward, with the crowd booing you.
+	If you beat everyone, you become the champion of the fight club and receive a huge reward.
 
 5)						The Painter
-	The group sees a painter who is sitting on a stool with 3 easels with paintings on them. The painter is a very cheery person, who would look like a colorful Willy Wonka type. He will say that he is giving out one of his paintings. The first painting is of a lion, the second painting would have a family of Ogres and the last painting would have a strangely colored potion on it.
-Whichever choice you pick, the painter will vomit up a bunch of different colored ink, that would slowly form into a real version of whichever painting you picked. If you pick the lion, you will have to fight the lion. If you pick the Ogre family, you can either fight them or attempt to reason with them (although they would be very stupid). If you pick the potion, you will randomly get a buff or debuff for the next few fights. 
-You can also refuse to take any of the paintings, but the painter will insist that you take one. You can continue to refuse, which would lead to the painter getting more and more angry with you, with him being insulted that you won’t even take his art for free. You can continue to refuse him up to 3 times. On the final time he will get angry with you and leave. Any future interactions that you will have with him will be more antagonistic if you refuse to take any paintings. If you take a painting he will be more cheerful in future encounters.
+	The group sees a painter who is sitting on a stool with 3 easels with paintings on them. 
+	The painter is a very cheery person, who would look like a colorful Willy Wonka type. 
+	He will say that he is giving out one of his paintings. The first painting is of a lion,
+	the second painting would have a family of Ogres and the last painting would have a 
+	strangely colored potion on it.
+Whichever choice you pick, the painter will vomit up a bunch of different colored ink, 
+that would slowly form into a real version of whichever painting you picked.
+If you pick the lion, you will have to fight the lion. If you pick the Ogre family,
+you can either fight them or attempt to reason with them (although they would be very stupid).
+If you pick the potion, you will randomly get a buff or debuff for the next few fights. 
+You can also refuse to take any of the paintings, but the painter will insist that you take one. 
+You can continue to refuse, which would lead to the painter getting more and more angry with you,
+with him being insulted that you won’t even take his art for free. You can continue to refuse him up to 3 times.
+On the final time he will get angry with you and leave. 
+Any future interactions that you will have with him will be more antagonistic if you refuse to 
+take any paintings. If you take a painting he will be more cheerful in future encounters.
 
 6)						Gambling 
-	You come across a tiny man wearing a black suit with a big nose and a top hat standing next to a spinner. He will offer you the chance to spin the wheel for a chance to get a prize if you give him whatever the currency value is in the game (health potions, money food or whatever).
-There will be 5 options, 1 jackpot, 2 options where you break even and 2 options where you get nothing. However the spinner is pretty rigged and the actually chances that you roll on the jackpot would be like 5 or 10 %. The player can continue to spin the wheel for as long as they want if they have enough currency to keep spinning. They can also stop spinning whenever they want or refuse to spin at all.
+	You come across a tiny man wearing a black suit with a big nose and a top hat standing next to a spinner.
+	He will offer you the chance to spin the wheel for a chance to get a prize if you give
+	him whatever the currency value is in the game (health potions, money food or whatever).
+There will be 5 options, 1 jackpot, 2 options where you break even and 2 options where you get nothing.
+However the spinner is pretty rigged and the actually chances that you roll on the jackpot would be like
+5 or 10 %. The player can continue to spin the wheel for as long as they want if they have enough 
+currency to keep spinning. They can also stop spinning whenever they want or refuse to spin at all.
 
 7)						The Magician
-	The group comes across a magician who visually looks like a stereotypical magician that you would see at parties for kids. He will insist that he is the greatest warrior of all time and wants to prove it by fighting the group. The fight would be pretty easy, but he would have alot of abilities that would just annoy the player (abilities that would make it harder to hit him/ the ability to make illusions of himself). Once you beat him, he will clap his hands and smoke would appear, causing him to get away. He would serve as the rival type character that you would fight in each world, with him getting more powerful each time.
+	The group comes across a magician who visually looks like a stereotypical magician that you 
+	would see at parties for kids. He will insist that he is the greatest warrior of all time and
+	wants to prove it by fighting the group. The fight would be pretty easy, but he would have 
+	alot of abilities that would just annoy the player (abilities that would make it harder to hit him/
+	the ability to make illusions of himself). Once you beat him, he will clap his hands and 
+	smoke would appear, causing him to get away. He would serve as the rival type character that
+	you would fight in each world, with him getting more powerful each time.
 
