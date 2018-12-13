@@ -1,33 +1,27 @@
-package dev.pro.game.states;
 
 import java.awt.Graphics;
-
-import dev.pro.game.Game;
-import dev.pro.game.Events.Event;
-import dev.pro.game.gameobjects.creatures.Player;
-import dev.pro.game.gfx.Animation;
-import dev.pro.game.gfx.Assets;
-import dev.pro.game.ui.ClickListener;
-import dev.pro.game.ui.UIImageButton;
-import dev.pro.game.ui.UIManager;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 
 public class GameState extends State{
 	
 	//private boolean event;
 	//private UIManager gameUI;
-	private Event dogEvent;
+	private Event dogEvent, eggEvent;
 	
 	private Animation cart_Animation;
 	
 	public GameState(Game game) {
 		super(game);
 		cart_Animation = new Animation(500, Assets.cart);
-		//gameUI = new UIManager(game);
-	    //game.getMouseManager().setUIManager(gameUI);
-		//event = false;
 		
 		dogEvent = new Event(game, Assets.dog);
+		dogEvent.addPage(Assets.dog_oil);
+		dogEvent.addPage(Assets.dog_demon);
 		
+		eggEvent = new Event(game, Assets.egg);
 	}
 	
     int fgx = 0; //Foreground position.
@@ -37,11 +31,14 @@ public class GameState extends State{
 	@Override
 	public void tick() {
 	    
-		if(dogEvent.getEvent()) {
+		if(!dogEvent.getStatus() && !eggEvent.getStatus()) {
 			
-		    if(fgx == -200) {
-			    dogEvent.setEvent(false);
-			    
+		    if(fgx == -230) {
+			    dogEvent.setStatus(true);
+		    }
+		    if(fgx == -500) {
+		    	eggEvent.setStatus(true);
+				//setState(new CombatState(game, game.sword));
 		    }
 		    if(mgx > -1160){
 			    mgx -=1;
@@ -57,10 +54,13 @@ public class GameState extends State{
 			    }
 		    }
 		}
-		else {
+		else if(dogEvent.getStatus()){
 			dogEvent.tick();
-
 		}
+		else if(eggEvent.getStatus()) {
+			eggEvent.tick();
+		}
+		
 	}
 
 	@Override
@@ -70,12 +70,30 @@ public class GameState extends State{
 	    g.drawImage(Assets.forestFore, fgx, 0, 2880, 720, null);
 	    g.drawImage(Assets.inn, fgx + 2700, 435, 200, 200, null);
 	    g.drawImage(cart_Animation.getCurrentFrame(),cartx, 530, 150, 100, null);
+		g.drawImage(Assets.tree, fgx + 500, 540, 100, 200, null);
+		g.drawImage(Assets.rock, fgx + 800, 550, 100, 100, null);
 	    
-	    if(!dogEvent.getEvent()) {
+	    if(dogEvent.getStatus()) {
 	    	dogEvent.render(g);
 
 	    }
+	    if(eggEvent.getStatus()) {
+	    	eggEvent.render(g);
+	    }
 	    
+	}
+
+	public void cereal() {
+		try {
+			FileOutputStream fileOut = new FileOutputStream("/cereal");
+			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+			objectOut.writeObject(game);
+			objectOut.close();
+			System.out.println("Game saved.");
+		}
+		catch (IOException i){
+			i.printStackTrace();
+		}
 	}
 
 }

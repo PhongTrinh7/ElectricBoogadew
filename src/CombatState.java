@@ -1,141 +1,160 @@
-package dev.pro.game.states;
 
-import java.awt.Graphics;
+import java.awt.*;
 
-import dev.pro.game.Game;
-import dev.pro.game.gameobjects.creatures.NPC;
-import dev.pro.game.gameobjects.creatures.Player;
-import dev.pro.game.gfx.Animation;
-import dev.pro.game.gfx.Assets;
-import dev.pro.game.ui.ClickListener;
-import dev.pro.game.ui.UIImageButton;
-import dev.pro.game.ui.UIManager;
-
+/**
+ * This class handles the combat portion of the game. It is an extension of the State class
+ * and also includes much of the user interface. A new CombatState is instantiated
+ * for each combat scenario.
+ */
 public class CombatState extends State{
 	
-	private Player gravy, skele, bunj;
-	private NPC skeleDog, sword;
-	private boolean action1, action2, action3;
+	private NPC enemy;
+	private boolean action1, action2, action3, enemyTurn;
 	private int actionIndex, actionIndex2, actionIndex3;
+	private int potionCount;
 	
     private UIManager combatUI;
 
 	
-	public CombatState(Game game) {
+	public CombatState(Game game, NPC enemy) {
 		super(game);
-		
-		gravy = new Player(game, 180, 400, "Gravy", 50, Assets.gravy);
-		gravy.addAnimation(Assets.gravy_action, 500);
-		gravy.addProjectile(Assets.gravy_lightning);
-		
-		skele = new Player(game, 380, 400, "Skele", 50, Assets.skeleman);
-		skele.addAnimation(Assets.skeleman_tele, 500);
-		
-		bunj = new Player(game, 280, 400, "Bunjamen", 50, Assets.bunj);
-		bunj.addAnimation(Assets.bunj_smash, 500);
-		
-		skeleDog = new NPC(580, 400, 300, 200, 100, Assets.skeleDog);
-		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
-		
-        sword = new NPC(780, 400, 300, 200, 100, Assets.sword);
-        sword.addAnimation(Assets.swordAtk, 500);
-		
+
+		this.enemy = enemy;
+
 		action1 = false; //action for each character
 		action2 = false;
 		action3 = false;
 	
+		potionCount = 3;
 		
 		combatUI = new UIManager(game);
 		game.getMouseManager().setUIManager(combatUI);
 		
-		combatUI.addObject(new UIImageButton(150, 300, 64, 64, Assets.gravy_button, new ClickListener() { //Button for the first Player.
+		combatUI.addObject(new UIImageButton(140, 104, 129, 96, Assets.gravy_button, new ClickListener() { //Button for the first Player.
 			
 			public void onClick() {
-				action1 = true;
-				actionIndex = 1;
+				if (!enemyTurn && !action2 && !action3) {
+					action1 = true;
+					actionIndex = 1;
+				}
 			}}));
-		
-		combatUI.addObject(new UIImageButton(250, 300, 64, 64, Assets.bunj_button, new ClickListener() { //Button for the second Player.
+
+		combatUI.addObject(new UIImageButton(140, 304, 128, 96, Assets.skele_button, new ClickListener() { //Button for the third Player.
 
 			public void onClick() {
-				action3 = true;
-				actionIndex3 = 1; 
-			}}));	
-		
-		combatUI.addObject(new UIImageButton(350, 300, 64, 64, Assets.skele_button, new ClickListener() { //Button for the third Player.
+				if (!enemyTurn && !action1 && !action3) {
+					action2 = true;
+					actionIndex2 = 1;
+				}
+			}}));
+
+		combatUI.addObject(new UIImageButton(140, 204, 128, 96, Assets.bunj_button, new ClickListener() { //Button for the second Player.
 
 			public void onClick() {
-				action2 = true;
-				actionIndex2 = 1; 
-			}}));	
+				if (!enemyTurn && !action1 && !action2) {
+					action3 = true;
+					actionIndex3 = 1;
+				}
+			}}));
 			
 		
 		//Potion Buttons
-		combatUI.addObject(new UIImageButton(150, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Gravy.
+		combatUI.addObject(new UIImageButton(128, 400, 128, 64, Assets.potion_button, new ClickListener() { //Potion for Gravy.
 
 			public void onClick() {
-                gravy.setHealth((gravy.getHealth() + 5));
-			}}));
-		
-		combatUI.addObject(new UIImageButton(250, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Bunj.
-
-			public void onClick() {
-                bunj.setHealth((bunj.getHealth() + 5));
-			}}));
-		
-		combatUI.addObject(new UIImageButton(350, 450, 64, 32, Assets.potion_button, new ClickListener() { //Potion for Skele.
-
-			public void onClick() {
-                skele.setHealth((skele.getHealth() + 5));
+				if(potionCount != 0) {
+					game.gravy.setHealth((game.gravy.getHealth() + 10));
+					game.bunj.setHealth((game.bunj.getHealth() + 10));
+					game.skele.setHealth((game.skele.getHealth() + 10));
+					potionCount -= 1;
+				}
 			}}));
     }
-    
 
+	/**
+	 * This tick method runs the combat loop, playing the idle animations and waiting for user inputs
+	 * to occur.
+	 */
 	@Override
 	public void tick() {
-		if(!action2) {
-	        combatUI.tick();
+		if(enemy.getHealth() <= 0) {
+			if(game.getKeyManager().enter) {
+				game.getMouseManager().setUIManager(null);
+				State.setState(game.gameState);
+			}
 		}
-		skeleDog.tick();
-		skele.tick();
-		gravy.tick();
-		bunj.tick();
-		sword.tick();
-		
+		enemy.tick();
+		game.skele.tick();
+		game.gravy.tick();
+		game.bunj.tick();
+		combatUI.tick();
+		if (!enemyTurn && enemy.health > 0) {
+			if (action1) { //Gravy's action
+				game.gravy.action(actionIndex);
+
+				if (game.gravy.animations.get(1).getIndex() == game.gravy.animations.get(1).getSize()-1) {
+					enemy.setHealth((enemy.getHealth() - 15));
+					action1 = false;
+					enemyTurn = true;
+				}
+			}
+			if (action2) { //Skele's actions
+				game.skele.action(actionIndex2);
+
+				if (game.skele.animations.get(1).getIndex() == game.skele.animations.get(1).getSize()-1) {
+					enemy.setHealth((enemy.getHealth() - 15));
+					action2 = false;
+					enemyTurn = true;
+				}
+			}
+			if (action3) { //Bunj's actions
+				game.bunj.action(actionIndex3);
+
+				if (game.bunj.animations.get(1).getIndex() == game.bunj.animations.get(1).getSize()-1) {
+					enemy.setHealth((enemy.getHealth() - 15));
+					action3 = false;
+					enemyTurn = true;
+				}
+			}
+		}
+
+		if(enemyTurn) {//Enemy's actions
+			enemy.attack();
+
+			if (enemy.animations.get(1).getIndex() == enemy.animations.get(1).getSize()-1) {
+				game.gravy.setHealth(game.gravy.health - (int) Math.floor(Math.random() * 10));
+				game.skele.setHealth(game.gravy.health - (int) Math.floor(Math.random() * 10));
+				game.bunj.setHealth(game.gravy.health - (int) Math.floor(Math.random() * 10));
+				enemyTurn = false;
+			}
+		}
 	}
 
+	/**
+	 * Takes over the Display to render the combat scenario instead of the over world.
+	 * @param g Graphics object to draw stuff.
+	 */
 	@Override
 	public void render(Graphics g) {
-		if(action1) {
-			gravy.action(actionIndex);
-			skeleDog.setHealth((skeleDog.getHealth() - 25));
-			action1 = false;
+		g.drawImage(Assets.forestBack, 0, 0, null);
+		g.drawImage(Assets.combatBack, 0, 360,1280, 360, null);
+		g.setColor(Color.GREEN);
+		g.fillRect( 128, 100, game.gravy.health*3, 20);
+		g.fillRect( 128, 200, game.bunj.health*3, 20);
+		g.fillRect( 128, 300, game.skele.health*3, 20);
 
+		g.setColor(Color.RED);
+		g.fillRect(900, 100, enemy.health*3, 20);
+
+		if(enemy.getHealth() <= 0) {
+			g.drawImage(Assets.victory, 420, 80, 420, 140, null);
 		}
-		if(action2) {
-			skele.action(actionIndex2);
-			skeleDog.setHealth((skeleDog.getHealth() - 15));
-			action2 = false;
-		}
-		if(action3) {
-			bunj.action(actionIndex3);
-			skeleDog.setHealth((skeleDog.getHealth() - 15));
-			action3 = false;
-		}
-		if(skele.getCurrentIndex() == 3) {
-			skeleDog.attack();
-			sword.attack();
-			gravy.setHealth(gravy.getHealth() - 1);
-			skele.setHealth(skele.getHealth() - 1);
-			bunj.setHealth(skele.getHealth() - 1);
-		}
-       
+
 		combatUI.render(g);
-		skeleDog.render(g);
-		skele.render(g);
-		gravy.render(g);
-		bunj.render(g);
-		sword.render(g);
+		game.bunj.render(g);
+		enemy.render(g);
+		game.skele.render(g);
+		game.gravy.render(g);
 	}
 
 }

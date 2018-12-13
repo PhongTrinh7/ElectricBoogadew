@@ -1,37 +1,32 @@
-package dev.pro.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Serializable;
 
-import dev.pro.game.display.Display;
-import dev.pro.game.gfx.Assets;
-import dev.pro.game.gfx.ImageLoader;
-import dev.pro.game.gfx.SpriteSheet;
-import dev.pro.game.input.KeyManager;
-import dev.pro.game.input.MouseManager;
-import dev.pro.game.states.CombatState;
-import dev.pro.game.states.GameState;
-import dev.pro.game.states.MenuState;
-import dev.pro.game.states.State;
-
-public class Game implements Runnable{ //Runnable is the Thread thing.
+public class Game implements Runnable, Serializable {
 	
 	private Display display;
 	public int width, height;
 	public String title;
 	
 	private boolean running = false;
-	private Thread thread; //Thread is like its own minnie program.
-	
+	private Thread thread;
+	transient private Thread producer;
+	transient private Thread consumer;
+
 	private BufferStrategy bs;
 	private Graphics g; 
+	
+	public Player gravy, skele, bunj;
+	public NPC skeleDog, sword;
 	
    //States
 	public State gameState;
 	public State menuState;
-	public State combatState;
 	
 	//Input
 	private KeyManager keyManager;
@@ -44,7 +39,6 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		this.title = title;
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
-		
 	}
 	
 	private void init() { //initializes everything.
@@ -54,15 +48,33 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		display.getFrame().addMouseMotionListener(mouseManager);
 		display.getCanvas().addMouseListener(mouseManager);
 		display.getCanvas().addMouseMotionListener(mouseManager);
-	    Assets.init();
-	    
-	    
-	    gameState = new GameState(this);
+	   	Assets.init();
+
+	   	//Our heroes and villains.
+		gravy = new Player(this,420, 500, "Gravy", 50, Assets.gravy);
+		gravy.addAnimation(Assets.gravy_action, 500);
+		gravy.addAnimation(Assets.gravy_dead, 500);
+
+		skele = new Player(this, 300, 450, "Skele", 50, Assets.skeleman);
+		skele.addAnimation(Assets.skeleman_tele, 500);
+		skele.addAnimation(Assets.skele_dead, 500);
+
+		bunj = new Player(this, 450, 400, "Bunjamen", 50, Assets.bunj);
+		bunj.addAnimation(Assets.bunj_smash, 500);
+		bunj.addAnimation(Assets.bunj_dead, 500);
+
+		skeleDog = new NPC(450, 370, 8, 8, 100, Assets.skeleDog);
+		skeleDog.addAnimation(Assets.skeleDogAtk, 300);
+		skeleDog.addAnimation(Assets.skeleDog_dead, 500);
+
+		sword = new NPC(450, 400, 6, 6, 100, Assets.sword);
+		sword.addAnimation(Assets.swordAtk, 500);
+		sword.addAnimation(Assets.sword_dead, 500);
+
+
+		gameState = new GameState(this);
 	    menuState = new MenuState(this);
-	    //Commented out for now and is being instantiated in menu state.
-	    combatState = new CombatState(this); 
-	    //Uncomment it if you want to jump straight into combat state.
-	    State.setState(combatState);
+	    State.setState(menuState);
 	}
 	
 	
@@ -103,39 +115,21 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		init();
 		
 		int fps = 30;
-	//	double timePerTick = 1000000000 / fps;
-	//	double delta = 0;
-	//	long now;
-	//	long lastTime = System.nanoTime();
-	//	long timer = 0;
-	//	int ticks = 0;
+
 		
 		while(running) {
-		//	now = System.nanoTime();
-		//	delta += (now - lastTime) / timePerTick;
-		//	timer += now - lastTime;
-		//	lastTime = now;
+
 			try {
-			  thread.sleep(fps);
-			}catch(InterruptedException e) {
+				thread.sleep(fps);
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		//	if(delta >= 1) {
-			    tick();
-			    render();
-			//    ticks++;
-			//    delta--;
-		//	}
-			
-		//	if(timer >= 1000000000) {
-		//		System.out.println("Ticks and Frames: " + ticks);
-		//		ticks = 0;
-		//		timer = 0;
-			}
-			
-		
-		
-		stop();
+
+			tick();
+			render();
+
+		}
+			stop();
 	}
 	
 	public KeyManager getKeyManager() {
@@ -156,6 +150,22 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
 		                           //you are in.
 		thread.start(); //runs the run method where the majority of 
 		                //code goes.
+		producer = new Thread() {
+			@Override
+			public void run() {
+				while (running)
+				System.out.println("W");
+			}
+		};
+		consumer = new Thread() {
+			@Override
+			public void run() {
+				while (running)
+				System.out.println("M");
+			}
+		};
+		producer.start();
+		consumer.start();
 	}
 
     public synchronized void stop() {
@@ -166,6 +176,8 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
     	running = false;
     	try {
 			thread.join(); //used to stop thread.
+			producer.join();
+			consumer.join();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -180,4 +192,8 @@ public class Game implements Runnable{ //Runnable is the Thread thing.
     public int getHeight(){
     	return height;
     }
+
+    public void cereal() {
+
+	}
 }
