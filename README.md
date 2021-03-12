@@ -1,4 +1,4 @@
 Electric Boogadew
 
-It's a game for CS151 final project.
+An attempt at a game and game engine for CS151 - Object Oriented Design final project.
 Not feature complete.
